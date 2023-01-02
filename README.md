@@ -9,7 +9,11 @@ Backend 4명의 팀원으로 구성된 팀프로젝트로 진행된 중고차 �
 <img width="80%" src="https://user-images.githubusercontent.com/103451439/210262604-a9fd487f-c5ce-42ea-9ebe-7132d2cbb6fc.png"/>
 
 🔎Demo : https://www.kcar.com/
+
+
 🔎Demo : http://www.encar.com/index.do
+
+
 K카와 엔카 사이트를 참조하여 만든 사이트 입니다.
 
 ## 개발 목표
@@ -19,10 +23,20 @@ Spring Framework를 사용하여 MVC패턴을 이해하고 다양한 API 사용�
 ## 프로젝트 정보
 
 📌개발 인원 : Backend 4명
+
+
 📌개발 기간 : 2022.08.29 ~ 2022.09.30 (1개월)
+
+
 📌Backend : Java, spring, Oracle
+
+
 📌Frontend : HTML/CSS, JS
+
+
 📌Framework/ Libray : SpringFramework, Mybatis
+
+
 📌주요업무 및 상세역할
 - 찜하기, 찜한 차량 비교하기, 결제하기, 주문내역, 이달의 딜러왕, 메인화면 구축 역할 담당
 - 찜 버튼을 누르면, 원하는 상품을 위시리스트에 담도록 개발하였습니다.
