@@ -4,13 +4,14 @@
 
 
 
-
 Backend 4명의 팀원으로 구성된 팀프로젝트로 진행된 중고차 매매 사이트 개발
 
 
-
+<br><br/>
 
 <img width="80%" src="https://user-images.githubusercontent.com/103451439/210262604-a9fd487f-c5ce-42ea-9ebe-7132d2cbb6fc.png"/>
+
+<br><br/>
 
 🔎Demo : https://www.kcar.com/
 
@@ -20,10 +21,14 @@ Backend 4명의 팀원으로 구성된 팀프로젝트로 진행된 중고차 �
 
 K카와 엔카 사이트를 참조하여 만든 사이트 입니다.
 
+
+<br><br/>
 ## 개발 목표
 
 Spring Framework를 사용하여 MVC패턴을 이해하고 다양한 API 사용해보기 그리고 팀원들과 협업하기에 의의를 두었습니다.
 
+
+<br><br/>
 ## 프로젝트 정보
 
 📌개발 인원 : Backend 4명
@@ -49,6 +54,9 @@ Spring Framework를 사용하여 MVC패턴을 이해하고 다양한 API 사용�
 - 결제된 내역을 카운트하여 판매자의 판매수를 확인하여 판매한 딜러 순위 볼 수 있도록 구현
 - Bootstrap templet 사용하여 메인화면을 구성하여 등록된 상품과 후기, 공지사항을 확인 할 수 있도록 구성하였습니다.
 
+
+<br><br/>
+
 <img width="80%" src="https://user-images.githubusercontent.com/103451439/210265505-5a1bb157-0e89-415f-8f7a-500c56c2a2a7.png"/>
 
 <img width="80%" src="https://user-images.githubusercontent.com/103451439/210265637-a1d9123e-f1e9-415c-a18c-775a599c112e.png"/>
@@ -61,10 +69,13 @@ Spring Framework를 사용하여 MVC패턴을 이해하고 다양한 API 사용�
 
 <img width="80%" src="https://user-images.githubusercontent.com/103451439/210265951-c411700c-729f-4bd6-899f-9a0100e5ea7f.png"/>
 
-
+<br><br/>
 ## 개선사항 및 후기
 
 찜할때, 찜한 상품이 저장되도록 DB를 설계 했었어야 했는데 설계하지 못하여 로그아웃을 할 경우 찜한 목록과 주문내역이 사라지게 됩니다.
 기능 구현되어 작동하는 것에 몰두하여 그 부분을 놓친점이 매우 아쉽고 개발할때 DB테이블, column을 세부적으로 구성하는 작업의 중요함을 다시 한번 배우게 되었습니다.
 
 외부 API를 요청하고 처리하면서 자바스크립트 callback 함수를 사용하여 비동기처리를 해보는 경험을 해보았습니다.
+
+
+<br><br/><br><br/>
