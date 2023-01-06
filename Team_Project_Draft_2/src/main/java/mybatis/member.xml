@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member.model.Member">
+
+	<select id="GetTotalCount" resultType="int">
+		select count(*) from member
+		<if test="whatColumn == 'id'">
+			where id like #{keyword}
+		</if>
+		<if test="whatColumn == 'name'">
+			where name like #{keyword}
+		</if>
+	</select>
+	
+	<select id="GetMemberList" resultType="MyMember">
+	  	select * from member 
+	  	<if test="whatColumn == 'id'">
+	  		where id like #{keyword}
+	  	</if>
+	  	<if test="whatColumn == 'name'">
+	  		where name like #{keyword}
+	  	</if>
+	  	order by num
+  	</select>	
+	 <select id="GetMemberByNum" resultType="MyMember">
+		select * from member
+		where num = #{num}
+	</select>
+	<delete id="DeleteMember">
+		delete member
+		where num= #{num}
+	</delete>
+	<update id="AuthorityMember">
+		update member
+		set authority=authority + 1 where id = #{id}
+	</update>
+	<update id="AuthorityMember2">
+		update member
+		set authority=authority - 1 where id = #{id}
+	</update>
+	
+
+
+	<insert id="RegisterMember">
+		insert into
+		member(num,id,name,pw,email,gender,yy,mm,dd,hp,addr,company,com_add)
+		values(seq_mem.nextval,#{id},#{name},#{pw},#{email},#{gender},
+		#{yy},#{mm},#{dd},#{hp},#{addr},#{company},#{com_add})
+	</insert>
+	
+	<select id="IdCheck" resultType="int">
+	select count(*) from member where id=#{id}
+	</select>
+	
+	<select id="GetMember" resultType="MyMember">
+	 select * from member where id = #{id} 
+		</select>
+	<select id="SearchIdByBean" resultType="MyMember">
+	 select * from member where name = #{name} and email = #{email}
+	 </select>
+	 
+	<select id="PwFindIdCheck" resultType="String">
+	 select id from member where id = #{id}
+	</select>
+	
+	<update id="UpdatePw">
+	 update member set pw = #{pw} where email = #{email}
+	</update>
+	<select id="SelectMember" resultType="MyMember"> select * from member where num=#{num} </select>
+<select id="SelectMemberUP" resultType="MyMember"> select * from member where num=#{num} </select>
+
+<update id="UpdateMember">
+	 update member set name=#{name},pw=#{pw},gender=#{gender},yy=#{yy},mm=#{mm},dd=#{dd},hp=#{hp},email=#{email},addr=#{addr},company=#{company},com_add=#{com_add} where num=#{num}
+	  </update>
+	
+</mapper>
+<!-- member.xml -->
+

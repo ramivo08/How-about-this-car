@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="requestAuthority.model.RequestAuthority">
+
+	<insert id="InsertRA">
+	insert into requestAuthority values(#{id},#{name},#{company},#{kind},#{evidence},#{registrationno},#{com_add},#{hp},0)
+	</insert>
+
+	<select id="GetRequestList" resultType="requestAuthority.model.requestAuthorityBean">
+	select * from requestAuthority where status = 0
+	</select>
+
+	<update id="UpdateStatus">
+	update requestAuthority set status = 1 where id = #{id}
+	</update>
+
+	<select id="GetInfoByID" resultType="requestAuthority.model.requestAuthorityBean">
+	select * from requestAuthority where id = #{id}
+	</select>
+	
+	<delete id="DeleteByID">
+	delete requestAuthority where id = #{id}
+	</delete>
+	
+	<select id="GetCount" resultType="int">
+	select count(*) from requestAuthority where status = 0
+	</select>
+  </mapper>

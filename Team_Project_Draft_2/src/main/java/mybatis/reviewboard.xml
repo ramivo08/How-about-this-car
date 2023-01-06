@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review.model.reviewboard">
+	<select id="GetTotalCount" resultType="int">
+		select count(*) from reviewboard
+		<if test="whatColumn == 'rname'"> where rname like #{keyword} </if>
+		<if test="whatColumn =='rtitle'"> where rtitle like #{keyword} </if>
+		<if test="whatColumn == ''"> where rname like #{keyword} or rtitle like #{keyword}
+		</if>
+	</select>
+	<select id="GetReviewBoard" resultType="MyReview">
+		select
+		rnum,rid,rname,rtitle,rcontents,rimage,r_day,repw,ref,re_step,re_level,carname,asterion,rcount
+		from (select rownum as
+		rank,rnum,rid,rname,rtitle,rcontents,rimage,r_day,repw,ref,re_step,re_level,carname,asterion,rcount
+		from (select
+		rnum,rid,rname,rtitle,rcontents,rimage,r_day,repw,ref,re_step,re_level,carname,asterion,rcount
+		from reviewboard)
+		<if test="whatColumn == 'rname'"> where rname like #{keyword} </if>
+		<if test="whatColumn =='rtitle'"> where rtitle like #{keyword} </if>
+		<if test="whatColumn == ''"> where rname like #{keyword} or rtitle like #{keyword}
+		</if>
+		order by ref desc, re_step asc)
+	</select>
+	<!-- 시퀀스에러 -->
+	<select id="GetLoginid" resultType="int"> select distinct cnum from
+		orderdetail where mid=#{mid} </select>
+	<select id="GetCnum" resultType="String"> select carname from car where
+		cnum=#{cnum} </select>
+	<select id="GetCar" resultType="String"> select distinct cname from car
+		where cnum=#{cnum} </select>
+	<insert id="InsertReiew"> insert into
+		reviewboard(rnum,rid,rname,rtitle,rcontents,repw,r_day,ref,re_step,re_level,rimage,asterion,carname)
+		values(seq_review.nextval,#{rid},#{rname},#{rtitle},#{rcontents},#{repw},#{r_day},seq_review.currval,#{re_step},#{re_level},#{rimage},#{asterion},#{carname})
+	</insert>
+	<select id="GetRnum" resultType="MyReview"> select * from reviewboard where
+		rnum=#{rnum} </select>
+	<update id="UpdateReviewboard"> update reviewboard set rtitle=#{rtitle},
+		rname=#{rname}, rcontents=#{rcontents}, rimage=#{rimage},
+		asterion=#{asterion}, carname=#{carname} where rnum=#{rnum} </update>
+	<select id="SelectByPw" resultType="String"> select repw from reviewboard
+		where rnum = #{rnum} </select>
+	<delete id="DeleteBoard"> delete reviewboard where rnum = #{rnum} </delete>
+</mapper>
+
+<!-- reiewboard.xml -->

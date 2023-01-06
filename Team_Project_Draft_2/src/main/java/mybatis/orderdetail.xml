@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order.model.OrderDetail">
+<insert id="insertData" parameterType="mall.model.PaySuccessDetailBean"> INSERT INTO orderdetail (odid, onum, mid, cnum) VALUES (seq_odid.nextval, #{onum}, #{mid}, #{cnum}) </insert>
+
+</mapper>
+<!-- orderdtail.xml -->

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="personalQuestion.model.PersonalQuestion">
+  	<insert id="InsertPQ">
+  	insert into personalQuestion(pnum, seller_id, buyer_id, buyer_name, ptitle, pcontents, carInfo) values(pqseq.nextval,#{seller_id}, #{buyer_id}, #{buyer_name}, #{ptitle}, #{pcontents}, #{carInfo})
+  	</insert>
+  
+  <select id="GetTotalCount" resultType="int">
+  select count(*) from personalQuestion where seller_id=#{seller_id}
+  
+    order by pnum desc
+  
+ </select>
+  
+    <select id="MyPQList" resultType="personalQuestion.model.PersonalQuestionBean">
+  select * from personalQuestion where seller_id=#{seller_id}
+  
+  order by pnum desc
+  
+  </select>
+  
+  <select id="SelectQuestion" resultType="personalQuestion.model.PersonalQuestionBean">
+  select * from personalQuestion where pnum=#{pnum}
+  
+    order by pnum desc
+  </select>
+  
+  <update id="UpdateAnswer">
+  update personalQuestion set answer=#{answer} where pnum = #{pnum}
+  </update>
+  
+  <select id="SelectMyList" resultType="personalQuestion.model.PersonalQuestionBean">
+  select * from personalQuestion where buyer_id = #{buyer_id}
+    order by pnum desc
+  
+  </select>
+  
+  <update id="UpdatePQ">
+  update personalQuestion set ptitle=#{ptitle}, pcontents=#{pcontents} where pnum=#{pnum}
+  </update>
+  
+  <delete id="DeletePQ">
+  delete personalQuestion where pnum = #{pnum}
+  </delete>
+  
+  </mapper>

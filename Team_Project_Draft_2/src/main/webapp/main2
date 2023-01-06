@@ -1,0 +1,63 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../common/common.jsp" %>
+
+<script>
+	function goSearch(){
+	alert("성공");
+	}
+</script>
+
+<%@ include file="top.jsp" %>
+
+
+<title>이 차 어때?</title>
+<div>
+	<div id="mainsize1">
+		<div id="loginMenu">
+		<c:if test="${loginInfo.id eq 'admin'}">
+		<a href="" id="login"></a>&nbsp;&nbsp;&nbsp;<a href="" id="login">관리자</a>
+		</c:if>
+		<c:if test="${loginInfo eq null}">
+		<a href="login.mem" id="login">로그인</a>&nbsp;&nbsp;&nbsp;<a href="register.mem" id="login">회원가입</a>
+		</c:if>
+		<c:if test="${loginInfo ne null}">
+		<a href="logout.jsp" id="login">로그아웃</a>&nbsp;&nbsp;&nbsp;<a href="" id="login">마이 페이지</a>
+		</c:if>
+		</div>
+
+	</div>
+</div>
+
+<div>
+	<div id="mainsize2">
+		<div id="logoimg">
+			<a href=""><img src="./resources/img/붕붕쓰.png" width="180" height="100"/></a>
+		</div>
+		
+		<div id="inputSearch">
+		<input type="text" placeholder="통합 검색">
+		<img id="search" src="./resources/img/검색3.png"/>
+		</div>
+	</div>
+</div>
+
+
+
+
+<%@ include file="bottom.jsp" %>
+
+
+
+
+<div class="form-group row" id="kakaologin">
+			      		<div class="kakaobtn">
+			      		<input type="hidden" name="kakaoemail" id="kakaoemail">
+			      		<input type="hidden" name="kakaoename" id="kakaoename">
+			      		<a href="javascript:kakaoLogin();">
+			      		<img src="./resources/img/kakao_login.png" alt="카카오계정 로그인" style="height: 35px;"/>
+			      		</a>
+			       		</div>
+			        </div>
+			        
+			        

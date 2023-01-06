@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order.model.Order">
+
+<insert id="InsertData" parameterType="mall.model.PaySuccessBean">
+INSERT INTO orderinfo VALUES (seq_oid.nextval, SYSDATE)
+<selectKey resultType="String" keyProperty="orderNum" order="AFTER"> SELECT seq_oid.currval FROM dual </selectKey>
+</insert>
+<select id="getMonthlyDealerList" resultType="mall.model.MonthlyDealerBean"> SELECT B.CNAME AS CNAME, COUNT(*) AS cnt FROM payResultDetail A INNER JOIN car B ON A.CNUM = B.CNUM INNER JOIN orderinfo C ON A.ONUM = C.ONUM WHERE SUBSTR(ORDERDATE,0,8) BETWEEN (TO_CHAR(TRUNC(SYSDATE,'MM'),'YYYYMMDD')) AND (LAST_DAY(SYSDATE)) GROUP BY B.CNAME ORDER BY COUNT(*) DESC </select>
+
+
+<select id="selectOrderListByMid" parameterType="String" resultType="mall.model.OrderInfoBean">
+SELECT
+	A.onum, 
+	A.orderdate, 
+	B.cnum, 
+	C.cimage 
+FROM orderinfo A 
+	INNER JOIN orderdetail B ON A.onum=B.onum 
+	INNER JOIN car C ON B.cnum=C.cnum 
+WHERE B.mid=#{mid}
+ORDER BY A.orderdate DESC
+</select>
+
+<select id="selectpayResultDetailListByOnum" parameterType="int" resultType="mall.model.OrderInfoBean">
+SELECT
+	A.onum, 
+	A.orderdate, 
+	B.cnum, 
+	C.cimage,
+	C.carname 
+FROM orderinfo A 
+	INNER JOIN orderdetail B ON A.onum=B.onum 
+	INNER JOIN car C ON B.cnum=C.cnum 
+WHERE A.onum = #{onum}
+</select>
+
+</mapper>
+<!-- order.xml -->

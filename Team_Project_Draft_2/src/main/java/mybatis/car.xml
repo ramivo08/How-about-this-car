@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="car.model.Car">
+
+	<insert id="InsertCar">
+	insert into car values(carseq.nextval, #{cid}, #{cname}, #{chp}, #{carname}, #{creg_day},
+	 #{ccompany}, #{cmodel}, #{coption}, #{cprice},#{cmileage} ,#{cdnf}, #{caccident}, #{cimage}, #{ccontent}, sysdate, default)
+	</insert>
+	
+<select id="GetTotalCount" resultType="int">
+  select count(*) from car where cid=#{cid}
+  
+  <if test="whatColumn=='carname'">
+  and carname like #{keyword}
+  </if>
+  
+  <if test="whatColumn=='cmodel'">
+  and cmodel like #{keyword}
+  </if>
+  
+  <if test="whatColumn=='ccompany'">
+  and ccompany like #{keyword}
+  </if>
+  
+  <if test="whatColumn==''">
+  and carname like #{keyword} or cmodel like #{keyword} or ccompany like #{keyword}
+  </if>
+ </select>
+
+  <select id="MyCarList" resultType="car.model.CarBean">
+  select * from car where cid=#{cid}
+  
+  <if test="whatColumn=='carname'">
+  and carname like #{keyword}
+  </if>
+  
+  <if test="whatColumn=='cmodel'">
+  and cmodel like #{keyword}
+  </if>
+  
+  <if test="whatColumn=='ccompany'">
+  and ccompany like #{keyword}
+  </if>
+  
+  <if test="whatColumn==''">
+  and carname like #{keyword} or cmodel like #{keyword} or ccompany like #{keyword}
+  </if>
+  
+  order by cnum desc
+  
+  </select>
+  
+  <select id="MyCarDetail" resultType="car.model.CarBean">
+  select * from car where cnum = #{cnum} 
+  
+  </select>
+  
+  <update id="UpdateMyCar">
+  update car set chp=#{chp}, carname=#{carname}, ccompany=#{ccompany}, cmodel=#{cmodel}, creg_day=TO_DATE(#{creg_day}), cmileage=#{cmileage}, coption=#{coption}, cdnf=#{cdnf}, caccident=#{caccident}, cprice=#{cprice}, cimage=#{cimage}, ccontent=#{ccontent} where cnum = #{cnum}
+  </update>
+
+  <delete id="DeleteCar">
+  delete car where cnum = #{cnum}
+  </delete>
+  
+  <select id="SelectAllCar" resultType="car.model.CarBean">
+  select * from car
+  
+  <if test="whatColumn2 != null">
+where ccompany like #{keyword2}
+<if test="whatColumn3 != null"> and cmodel like #{keyword3} </if>
+</if>
+  
+  <if test="whatColumn=='cmodel'">
+  where cmodel like #{keyword}
+  </if>
+  
+  <if test="whatColumn=='ccompany'">
+  where ccompany like #{keyword}
+  </if>
+  
+  <if test="whatColumn=='cid'">
+  where cid like #{keyword}
+  </if>
+  
+  <if test="whatColumn==''">
+  where carname like #{keyword} or cmodel like #{keyword} or ccompany like #{keyword}
+  </if>
+  
+    order by cnum desc
+  
+  </select>
+  
+  <select id="GetMainTotalCount" resultType="int">
+  select count(*) from car
+
+  <if test="whatColumn=='cmodel'">
+  where cmodel like #{keyword}
+  </if>
+  
+  <if test="whatColumn=='ccompany'">
+  where ccompany like #{keyword}
+  </if>
+   
+  <if test="whatColumn=='cid'">
+  where cid like #{keyword}
+  </if>
+  
+  <if test="whatColumn==''">
+  where carname like #{keyword} or cmodel like #{keyword} or ccompany like #{keyword}
+  </if>
+  
+    order by cnum desc
+  
+ </select>
+ 
+ <select id="GetMaxPrice" resultType="int">
+ select max(cprice) from car where cmodel = #{cmodel}
+ </select>
+ 
+ <select id="GetMinPrice" resultType="int">
+ select min(cprice) from car where cmodel = #{cmodel}
+ </select>
+ 
+ <update id="UpdateStatus">
+ update car set status=1 where cnum=#{cnum}
+ 
+ </update>
+ <!--  상세보기  -->
+<select id="GetCarList" resultType="MyCar"> select * from car order by cnum </select>
+<!--  mallWishListController, 상품비교하기 컨트롤러, paycontroller, payResultController 에서 번호로 상품 번호 가져오기  -->
+<select id="GetCarByNum" resultType="MyCar"> select * from car where cnum=#{pnum} order by cnum desc </select>
+<!--  carDetailController에서 사용  -->
+<select id="SelectCarByCnum" resultType="MyCar"> select * from car where cnum=#{cnum} </select>
+ 
+ <select id="SelectAllCarInMain" resultType="car.model.CarBean">
+ 
+select * from car order by inputdate desc
+
+ </select>
+ 
+ <select id="SelectMonthlyDealer" resultType="MyCar">
+<![CDATA[select cname,cid,count(status) as cnt from car where status=1 and inputdate <= sysdate and inputdate >=sysdate-30 group by cname,cid order by cnt desc, cname]]>
+ </select>
+ 
+ <select id="SelectCnumById" resultType="MyCar">
+ 
+ select * from car where cid = #{cid} 
+ </select>
+ 
+  </mapper>

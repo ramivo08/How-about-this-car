@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="faq.model.Faq">
+		<insert id="WriteFaq">
+  		insert into faq(fnum,ftitle,fcontent)
+  		values(faq_seq.nextval,#{ftitle},#{fcontent})
+	</insert>
+	
+	<select id="GetFaqList" resultType="MyFaq">
+		select * from faq
+	<if test="whatColumn == 'ftitle'">
+		where ftitle like #{keyword}
+	</if>
+	<if test="whatColummn == 'fcontent'">
+		where fcontent like #{keyword}
+	</if>
+	<if test="whatcolumn == ''">
+		where ftitle like #[keyword] or fcontent like #{keyword}
+	</if>
+		order by fnum desc
+	</select>
+	
+	<select id="GetTotalCount" resultType="int">
+		select count(*) from faq
+	<if test="whatColumn == 'ftitle'">
+		where ftitle like #{keyword}
+	</if>
+	<if test="whatColumn == 'fcontent'">
+		where fcontent like #{keyword}
+	</if>
+	<if test="whatColumn == ''">
+		where ftitle like #{keyword}  or fcontent like #{keyword}
+	</if>
+	</select>
+	
+	<select id="GetFaq" resultType="MyFaq">
+  		select * from faq
+  		where fnum = #{fnum}
+	</select>
+	
+	<update id="UpdateFaq">
+  	update faq set ftitle=#{ftitle},fcontent=#{fcontent}
+  	where fnum=#{fnum}
+  	</update>
+  
+    <delete id="DeleteFaq">
+  	delete faq
+  	where fnum = #{fnum}
+  	</delete>
+	
+	
+</mapper>

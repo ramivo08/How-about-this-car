@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd"> <!-- 환경설정하는 dtd -->
+  
+  <configuration>
+ 		<typeAliases>
+ 			<typeAlias type="car.model.CarBean" alias="MyCar"/>
+			<typeAlias type="member.model.MemberBean" alias="MyMember"/>
+<typeAlias type="review.model.ReviewboardBean" alias="MyReview"/>
+<typeAlias type="board.model.BoardBean" alias="MyBoard"/>
+<typeAlias type="faq.model.FaqBean" alias="MyFaq"/>
+ 		</typeAliases>
+ 		
+ 		<mappers>
+ 		
+ 			<mapper resource="mybatis/car.xml"/>
+ 			<mapper resource="mybatis/personalQuestion.xml"/>
+			<mapper resource="mybatis/member.xml"/>
+			<mapper resource="mybatis/requestAuthority.xml"/>
+			<mapper resource="mybatis/category.xml"/>
+			<mapper resource="mybatis/board.xml"/>
+			<mapper resource="mybatis/order.xml"/>
+			<mapper resource="mybatis/orderdetail.xml"/>
+			<mapper resource="mybatis/faq.xml"/>
+			<mapper resource="mybatis/reviewboard.xml"/>
+
+ 		</mappers>
+  		<!-- 하나만 있을 때에도 여기에 써도 됨 -->
+  
+  </configuration>

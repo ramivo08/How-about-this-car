@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<mvc:annotation-driven/> <!-- 유효성 검사 시, 필요함 -->
+	
+	<!-- ViewResolver -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> <!-- ViewResolver는 요청이 왔을 때, 접두사와 접미사에 어떤 것이 올지 설정해주는 것 -->
+		<property name="prefix" value="/WEB-INF/car"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+		<!-- 파일 업로드 시, 필요 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="50000000"/> <!-- 업로드 최대 사이즈, 50000000은 50MB -->
+		<property name="defaultEncoding" value="UTF-8"/>
+	
+	</bean>
+	
+	<!-- Controller -->
+	<context:component-scan base-package="car"></context:component-scan>
+	<context:component-scan base-package="requestAuthority"/>
+	<context:component-scan base-package="category"/>
+	<context:component-scan base-package="member"/>
+
+</beans>
