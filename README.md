@@ -43,7 +43,7 @@ Spring Framework를 사용하여 MVC패턴을 이해하고 다양한 API 사용�
 📌Frontend : HTML/CSS, JS
 
 
-📌Framework/ Libray : SpringFramework, Mybatis
+📌Framework/ Library : SpringFramework, Mybatis
 
 
 📌주요업무 및 상세역할
